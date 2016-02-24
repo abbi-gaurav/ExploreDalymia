@@ -5,7 +5,7 @@ package com.learn.test
   */
 class SampleTest extends BaseSpec {
   "A Stack" must {
-    "folllow FILO order" in {
+    "folllow FILO orderr" in {
       "a".length must be(1)
     }
   }
