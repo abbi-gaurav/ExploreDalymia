@@ -9,11 +9,11 @@ scala:
 script:
   - sbt clean compile test
   - sbt docker:publishLocal
-after_success:
-  - ./startContainer.sh
 deploy:
   api_key:
     secure: vHenAFV763naTonENC0+feejjsBlQS9FdXhj3px4bWycQEiUyGPjuwM2qAWf7GqAQE2K5tYTLcSRmTkRjb5l8Ypb6Lbd9QZN3uPp2KpldEzOGfxQULjMDyOBxMGnfHmJVmo9ID5s8bJVyiQET3m+BGneN/rAT8RyjVnrWo+sNuz4zqGzreqgpgL7GQn+mckH9vwvMdzePig+Q/V6IzpghQ4RZkPPtCGjAR9UJZmzfHKrxKNELlgC2GDdv66CP6D/VaTITcCKHXIJMKn8go0RvWtRRfna3vTedyMmeEunD8AtOpSAMKvNqvST5+Fq81Sfo3kkkzrKqbhoBpu9oaaRN9WHHpxfyPiOMy0DYgqJaS5HAqrebMsLWxYPIl3g32hZ9+HYS7UmB2RWscR/xoH2kNHovJVSQ1P0r7robD6cLi793fxAqcO1jLT/oSfaWtWUa/9WPmMNwW6HKDJWKcy8TP1OoLHGLD16UVu9wn00tJSt1+LZcV687T3dsKHvNcsUlcp/WhTquQmWdKf1FvI8SsKerqfq8ySCLahEesfqh66Z7kARQ5mDMaVFVcaSHXjGkU8IXw//1uav3d9WLTRLYHUlUIQpNWOsjLOgsRkfPZJsStIZ7oN6ehvZkxZ6jqJM4yoqwSxh/aHPcNJnijeGndVByj9BlpzYE8zGVpdlj3M=
+  provider: script
+  script: startContainer.sh
 branches:
   only:
       - master
