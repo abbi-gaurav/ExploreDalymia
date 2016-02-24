@@ -22,3 +22,5 @@ resolvers += "scalaz-bintray" at "http://dl.bintray.com/scalaz/releases"
 routesGenerator := InjectedRoutesGenerator
 
 testOptions:= Seq(Tests.Argument(TestFrameworks.ScalaTest,"-o", "-h", "target/test-reports"))
+
+maintainer := "Gaurav Abbi"
