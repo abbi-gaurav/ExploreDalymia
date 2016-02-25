@@ -19,4 +19,4 @@ heroku plugins:install heroku-docker
 # Build and release the application.
 # To give access to your Heroku apps, you
 # need to set the HEROKU_API_KEY environment variable.
-heroku docker:release exploredalmiya:1.0-SNAPSHOT
+heroku docker:release
