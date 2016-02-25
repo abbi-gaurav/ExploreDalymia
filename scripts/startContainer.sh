@@ -2,7 +2,7 @@
 
 # Abort script at first error
 set -e
-# Disallow unset variables
+# Disallow unset variables  r
 set -u 
 
 # Only run when not part of a pull request and on the master branch
