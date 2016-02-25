@@ -1,0 +1,6 @@
+{
+  "name": "Explore Dalmiya",
+  "description": "explore dalmiya docker container",
+  "image": "exploredalmiya:1.0-SNAPSHOT",
+  "addons": [ "mongolab" ]
+}
