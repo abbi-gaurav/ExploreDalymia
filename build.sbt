@@ -24,3 +24,5 @@ routesGenerator := InjectedRoutesGenerator
 testOptions:= Seq(Tests.Argument(TestFrameworks.ScalaTest,"-o", "-h", "target/test-reports"))
 
 maintainer := "Gaurav Abbi"
+
+dockerBaseImage := "heroku/java"
