@@ -7,11 +7,10 @@ jdk:
 scala:
   - 2.11.7
 script:
-  - sbt clean compile test
-  - sbt docker:publishLocal
+    - sbt docker:stage
 after_success:
-  - chmod +x scripts/startContainer.sh
-  - scripts/startContainer.sh
+  - chmod +x herokuDeplyContainer.sh
+  - herokuDeplyContainer.sh
 branches:
   only:
       - master
