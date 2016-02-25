@@ -10,7 +10,7 @@ script:
   - sbt clean compile test
   - sbt docker:publishLocal
 after_success:
-  - startContainer.sh
+  - scripts/startContainer.sh
 branches:
   only:
       - master
