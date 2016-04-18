@@ -3,11 +3,6 @@
 # ~~~~
 
 # Home page
-GET     /                           controllers.Application.index
+POST            /users                         @controllers.ReactiveUser.create
 
-# Map static resources from the /public folder to the /assets URL path
-GET     /assets/*file               controllers.Assets.versioned(path="/public", file: Asset)
-
-
-GET     /test                       controllers.ReactiveUser.index
-POST    /user                       controllers.ReactiveUser.create
+GET             /users/:limit/:before          @controllers.ReactiveUser.get(limit:Int, before:Long)

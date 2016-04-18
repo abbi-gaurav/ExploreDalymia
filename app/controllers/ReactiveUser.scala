@@ -1,26 +1,25 @@
 package controllers
 
 import com.google.inject.Inject
-import model._
-import play.api.mvc.{Action, Controller}
-import servies.read.UserReadService
-import play.api.Play.current
-import play.api.i18n.Messages.Implicits._
+import model.request.User
+import mongo.servies.UserService
+import org.joda.time.DateTime
+import play.api.libs.json.Json
+import play.api.mvc.{Action, AnyContent, Controller}
+import utils.configs.ThreadPools.dbContext
+import utils.rest.Worker._
 
 /**
   * Created by gabbi on 13/02/16.
   */
-class ReactiveUser @Inject()(userReadService: UserReadService) extends Controller {
+class ReactiveUser @Inject()(userService: UserService) extends Controller {
 
-  def index = Action {
-    Ok(userReadService.name)
+  def create: Action[AnyContent] = asyncActionWithBody(User.userForm) { (obj: User) =>
+    userService.add(obj) map {
+      case Left(e) => BadRequest(e)
+      case Right(_) => Redirect(routes.ReactiveUser.get(10, DateTime.now().getMillis))
+    }
   }
 
-  def create = Action { implicit request =>
-    userForm.bindFromRequest().fold({
-      errors => BadRequest(errors.errorsAsJson)
-    }, { value: User =>
-      Created(value.name.toUpperCase)
-    })
-  }
+  def get(limit: Int, before: Long): Action[AnyContent] = asyncActionGet { () => userService.getUsers(limit, before) map (x => Ok(Json.toJson(x))) }
 }
