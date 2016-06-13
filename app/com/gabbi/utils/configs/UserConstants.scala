@@ -1,4 +1,4 @@
-package utils.configs
+package com.gabbi.utils.configs
 
 /**
   * Created by gabbi on 18/04/16.

@@ -1,4 +1,4 @@
-package utils.rest
+package com.gabbi.utils.rest
 
 import play.api.Play.current
 import play.api.data.Form

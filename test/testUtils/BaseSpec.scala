@@ -1,4 +1,4 @@
-package com.learn.test
+package testUtils
 
 import org.scalatest.concurrent.PatienceConfiguration.Timeout
 import org.scalatest.concurrent.ScalaFutures

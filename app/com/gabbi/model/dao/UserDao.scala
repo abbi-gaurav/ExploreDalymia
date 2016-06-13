@@ -1,6 +1,6 @@
-package model.dao
+package com.gabbi.model.dao
 
-import model.request.User
+import com.gabbi.model.request.User
 import org.joda.time.DateTime
 import play.api.libs.json.Json
 

@@ -1,4 +1,4 @@
-package model.request
+package com.gabbi.model.request
 
 import play.api.data.Form
 import play.api.data.Forms._

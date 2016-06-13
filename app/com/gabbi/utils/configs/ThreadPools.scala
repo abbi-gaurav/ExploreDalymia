@@ -1,4 +1,4 @@
-package utils.configs
+package com.gabbi.utils.configs
 import scala.concurrent.ExecutionContext
 
 /**

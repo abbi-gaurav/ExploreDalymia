@@ -10,7 +10,8 @@ libraryDependencies ++= Seq(
   jdbc,
   cache,
   ws,
-  "org.scalatestplus" % "play_2.11" % "1.4.0",
+  "org.scalatestplus" % "play_2.11" % "1.4.0" % "test",
+  "org.mockito" % "mockito-core" % "1.10.19" % "test",
   "org.pegdown" % "pegdown" % "1.6.0",
   "org.reactivemongo" %% "play2-reactivemongo" % "0.11.9"
 )
@@ -21,8 +22,8 @@ resolvers += "scalaz-bintray" at "http://dl.bintray.com/scalaz/releases"
 // other, legacy style, accesses its actions statically.
 routesGenerator := InjectedRoutesGenerator
 
-testOptions:= Seq(Tests.Argument(TestFrameworks.ScalaTest,"-o", "-h", "target/test-reports"))
+jacoco.settings
 
-maintainer := "Gaurav Abbi"
+jacoco.excludes        in jacoco.Config := Seq("views*", "*Routes*", "*controllers*routes*", "*controllers*Reverse*", "*controllers*javascript*", "*controller*ref*")
 
-dockerBaseImage := "heroku/java"
+testOptions := Seq(Tests.Argument(TestFrameworks.ScalaTest, "-o", "-h", "target/test-reports"))

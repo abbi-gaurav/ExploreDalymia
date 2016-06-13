@@ -1,4 +1,4 @@
-package mongo.helpers
+package com.gabbi.mongo.helpers
 
 import org.joda.time.DateTime
 import reactivemongo.bson.{BSONDateTime, BSONHandler}
