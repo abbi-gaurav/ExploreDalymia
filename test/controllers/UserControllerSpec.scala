@@ -4,6 +4,9 @@ import com.gabbi.controllers.ReactiveUser
 import com.gabbi.model.request.User
 import com.gabbi.model.status.OpsSucceeded
 import com.gabbi.mongo.servies.UserService
+import com.gabbi.utils.rest.Worker
+import org.scalatest.mock.MockitoSugar
+import play.api.i18n.MessagesApi
 import play.api.libs.json.Json
 import play.api.mvc.{AnyContentAsJson, Result}
 import play.api.test.FakeRequest
@@ -39,12 +42,14 @@ class UserControllerSpec extends BaseSpec {
   }
 }
 
-object UserControllerSpec {
+object UserControllerSpec extends MockitoSugar {
 
   import org.mockito.Matchers._
   import org.mockito.Mockito._
 
-  val userService: UserService = mock(classOf[UserService])
+  val userService: UserService = mock[UserService]
+  val worker = new Worker(mock[MessagesApi])
   when(userService.add(any[User])(any[ExecutionContext])).thenReturn(Future.successful(Right(OpsSucceeded("created"))))
-  val controller = new ReactiveUser(userService)
+
+  val controller = new ReactiveUser(userService, worker)
 }

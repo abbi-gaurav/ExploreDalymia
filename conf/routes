@@ -3,6 +3,6 @@
 # ~~~~
 
 # Home page
-POST            /users                         @com.gabbi.controllers.ReactiveUser.create
+POST            /users                         com.gabbi.controllers.ReactiveUser.create
 
-GET             /users/:limit/:before          @com.gabbi.controllers.ReactiveUser.get(limit:Int, before:Long)
+GET             /users/:limit/:before          com.gabbi.controllers.ReactiveUser.get(limit:Int, before:Long)
