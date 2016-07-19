@@ -18,14 +18,14 @@ class ReactiveUser @Inject()(userService: UserService, worker: Worker) extends C
 
   import worker._
 
-  def create: Action[AnyContent] = asyncFormAction(User.userForm) { (obj: User) =>
+  def create: Action[AnyContent] = asyncFormAction(User.userForm) { (obj: User, _) =>
     userService.add(obj) map {
       case Left(e) => BadRequest(toJson(e))
       case Right(_) => Redirect(routes.ReactiveUser.get(10, DateTime.now().getMillis), FOUND)
     }
   }
 
-  def get(limit: Int, before: Long): Action[AnyContent] = asyncAction {
-    () => userService.getUsers(limit, before) map (x => Ok(toJson(x)))
+  def get(limit: Int, before: Long): Action[AnyContent] = asyncAction { ch =>
+    userService.getUsers(limit, before) map (x => Ok(toJson(x)))
   }
 }
