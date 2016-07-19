@@ -16,3 +16,5 @@ libraryDependencies ++= Seq(
 resolvers += "scalaz-bintray" at "http://dl.bintray.com/scalaz/releases"
 
 testOptions := Seq(Tests.Argument(TestFrameworks.ScalaTest, "-o", "-h", "target/test-reports"))
+
+//sample comment
