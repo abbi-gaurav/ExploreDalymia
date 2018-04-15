@@ -3,14 +3,14 @@ package com.gabbi.controllers
 import javax.inject.{Inject, Singleton}
 
 import com.gabbi.controllers.RestUtils._
-import com.gabbi.model.dao.Location
+import com.gabbi.model.dao.{CommonHeaders, Location}
 import com.gabbi.model.status.OpsFailed
 import com.gabbi.mongo.servies.HogwartsService
 import com.gabbi.utils.configs.ThreadPools.dbContext
 import com.gabbi.utils.rest.Worker
 import play.api.i18n.{I18nSupport, MessagesApi}
 import play.api.libs.json.Json
-import play.api.mvc.{Action, AnyContent, Controller, Request}
+import play.api.mvc._
 
 import scala.concurrent.Future
 
@@ -36,7 +36,7 @@ class HarryPotter @Inject()(worker: Worker, val messagesApi: MessagesApi, hogwar
 
   import worker._
 
-  def refined: Action[AnyContent] = asyncFormAction(Location.locationForm)((obj, ch) => for {
+  def refined: Action[AnyContent] = asyncFormAction(Location.locationForm)((obj: Location, ch: CommonHeaders.type) => for {
     either <- hogwartsService.fetchHorcrux(obj)
   } yield toJsonResult(either)
   )
@@ -46,7 +46,10 @@ class HarryPotter @Inject()(worker: Worker, val messagesApi: MessagesApi, hogwar
 
     val action = asyncFormAction(Location.locationForm)((obj, ch) => for {
       either <- hogwartsService.fetchHorcrux(obj)
-    } yield toJsonResult(either)
+    } yield {
+      val result: Result = toJsonResult(either)
+      specificHeader.foldLeft(result) { case (acc, hv) => acc.withHeaders("spellInvoked" -> hv) }
+    }
     )
 
     action(request)
